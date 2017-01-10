@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="PoB">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Postcodes of Bangladesh</title>
+		<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+		<style type="text/css">
+		* {
+			font-family: 'Lato', sans-serif;
+			color: #2E4053;
+		}
+		.search {
+		height: 50px;
+		margin-top: 20px !important;
+		}
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+		<script>
+		var PoB = angular.module('PoB', []);
+		PoB.controller('jsonCtrl', function ($scope, $http) {
+		$http.get('json/postcodes.json').success(function (data) {
+		$scope.postcodes = data;
+		});
+		});
+		</script>
+	</head>
+	<body ng-controller="jsonCtrl">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="form-group">
+						<input type="text" class="form-control search" placeholder="Search Postcodes" ng-model="search.postCode">
+					</div>
+				</div>
+			</div>
+			
+			<div class="card-columns">
+				<div class="card p-3 text-center" ng-repeat="postcodes in postcodes.postcodes | filter:search">
+					<div class="card-block">
+						<p>Division: {{ postcodes.division }}</p>
+						<p>District: {{ postcodes.district }}</p>
+						<p>Thana: {{ postcodes.thana }}</p>
+						<p>Post Office: {{ postcodes.postOffice }}</p>
+						<p>Post Code: {{ postcodes.postCode }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+	</body>
+</html>
