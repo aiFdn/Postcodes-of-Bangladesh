@@ -1,56 +1,92 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="PoB">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<title>Postcodes of Bangladesh</title>
-		<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
-		<style type="text/css">
-		* {
-			font-family: 'Lato', sans-serif;
-			color: #2E4053;
-		}
-		.search {
-		height: 50px;
-		margin-top: 20px !important;
-		}
-		</style>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-		<script>
-		var PoB = angular.module('PoB', []);
-		PoB.controller('jsonCtrl', function ($scope, $http) {
-		$http.get('json/postcodes.json').success(function (data) {
-		$scope.postcodes = data;
-		});
-		});
-		</script>
-	</head>
-	<body ng-controller="jsonCtrl">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-3">
-					<div class="form-group">
-						<input type="text" class="form-control search" placeholder="Search Postcodes" ng-model="search">
-					</div>
-				</div>
-			</div>
-			
-			<div class="card-columns">
-				<div class="card p-3 text-center" ng-repeat="postcodes in postcodes.postcodes | filter:search">
-					<div class="card-block">
-						<p>Division: {{ postcodes.division }}</p>
-						<p>District: {{ postcodes.district }}</p>
-						<p>Thana: {{ postcodes.thana }}</p>
-						<p>Post Office: {{ postcodes.postOffice }}</p>
-						<p>Post Code: {{ postcodes.postCode }}</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
-	</body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Postcodes of Bangladesh - an Akhaura Info Foundation service</title>
+    <link rel=icon type="image/vnd.microsoft.icon" href="favicon.ico"/>
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <link rel="shortcut icon" href="icon.png"/>
+    <meta name='copyright' content='Akhaura Info Foundation'>
+    <meta name='author' content='Akhaura Info Foundation, service@akhaura.info'>
+    <meta name='designer' content='Md. Sazzad Hossain Sharkar'>
+    <meta name='reply-to' content='service@akhaura.info'>
+    <meta name='owner' content='Akhaura Info Foundation'>
+    <meta name='language' content='EN'>
+    <meta name='description' content='Postcodes of Bangladesh. Lightweight postcode finding application to search postcodes in Bangladesh. This application developed with angularJS and Database designed with JSON formatted. This application works 10x faster than basic postcode search application which was provided by Bangladesh Post Office.'>
+    <meta name='keywords' content='Postcodes of Bangladesh. Lightweight postcode finding application to search postcodes in Bangladesh. This application developed with angularJS and Database designed with JSON formatted. This application works 10x faster than basic postcode search application which was provided by Bangladesh Post Office.'>
+    <meta property="og:title" content="Postcodes of Bangladesh - an Akhaura Info Foundation service"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:description" content="Postcodes of Bangladesh. Lightweight postcode finding application to search postcodes in Bangladesh. This application developed with angularJS and Database designed with JSON formatted. This application works 10x faster than basic postcode search application which was provided by Bangladesh Post Office."/>
+    <link href="//fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation.min.css">
+    <link rel="stylesheet" href="css/assets.css">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script>
+        var PoB = angular.module('PoB', []);
+        PoB.controller('jsonCtrl', function ($scope, $http) {
+            $http.get('json/postcodes.json').success(function (data) {
+                $scope.postcodes = data;
+            });
+        });
+    </script>
+</head>
+<body ng-controller="jsonCtrl">
+<div class="column row">
+
+    <div class="row">
+        <div class="large-12 columns">
+            <h3>Postcodes of Bangladesh</h3>
+            <p>Instantly search postcodes with AngularJS and JSON.</p>
+            <h4>Developed by, <a href="http://akhaura.info/" target="_blank">Akhaura Info Foundation</a></h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-12 large-4 columns">
+            <input type="text" class="search" placeholder="Search Postcodes. e.g. Akhaura" ng-model="search">
+        </div>
+
+        <div class="small-12 large-4 columns">
+            <span ng-repeat="postcodes in postcodes.postcodes | filter:query as filtered"></span>
+            <input type="text" class="search text-center" value="{{filtered.length}} Postcodes in Database"
+                   readonly="readonly">
+        </div>
+
+    </div>
+
+    <div class="row small-up-1 medium-up-3 large-up-4">
+        <div class="column column-block" ng-repeat="postcodes in postcodes.postcodes | filter:search">
+            <div class="card">
+                <div class="card-section">
+                    <table class="hover stack">
+                        <thead>
+                        <tr>
+                            <th class="text-center">Division: {{ postcodes.division }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="text-center">District: {{ postcodes.district }}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">Thana: {{ postcodes.thana }}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">Post Office: {{ postcodes.postOffice }}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">Post Code: {{ postcodes.postCode }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/js/foundation.min.js"></script>
+</body>
 </html>
