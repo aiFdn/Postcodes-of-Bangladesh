@@ -17,6 +17,16 @@
 * Project hosted with GitHub CDN
 * Better than Bangladesh Post Office's postcode finder
 
+## File directories
+
+**Files needs to copied into your project:**
+
+* `index.html` or it's contents
+* `css` folder with it's `.css` file
+* `json` folder with it's `.json` file
+
+That's it!
+
 ## Copyright
 
 © 2009-2017 [Akhaura Info Foundation](http://akhaura.info/)
