@@ -17,6 +17,12 @@
 * Project hosted with GitHub CDN
 * Better than Bangladesh Post Office's postcode finder
 
+## Demo
+Primary: [http://postcodes.aiflab.com](http://postcodes.aiflab.com)
+
+Mirror: [https://postcodes-of-bangladesh.firebaseapp.com](https://postcodes-of-bangladesh.firebaseapp.com)
+
+
 ## File directories
 
 **Files needs to copied into your project:**
@@ -29,9 +35,9 @@ That's it!
 
 ## Copyright
 
-© 2009-2017 [Akhaura Info Foundation](http://akhaura.info/)
+© 2009-2017 [Akhaura Info Foundation](http://akhaura.info)
 
-Web: [http://akhaura.info](http://akhaura.info/)
+Web: [http://akhaura.info](http://akhaura.info)
 
 Email: [service@akhaura.info](/mailto:service@akhaura.info)
 
